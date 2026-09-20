@@ -1,0 +1,6 @@
+beautifulsoup4
+nbformat
+numpy
+matplotlib
+fonttools
+brotli

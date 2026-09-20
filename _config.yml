@@ -1,0 +1,10 @@
+title: The Magnificent Jump
+author: สุรพัศ หอมชุ่ม · Math Nerd
+language: th
+logo: assets/images/quantcorner-horizontal-transparent-offwhite-1024.png
+logo_secondary: assets/images/quantsera-horizontal-transparent-offwhite-1024.png
+logo_alt: QuantCorner / Quantsera บนพื้นหลังสีดำ
+notebook: notebooks/the-magnificent-jump.ipynb
+repository:
+  url: https://github.com/nutdnuy/the-magnificent-jump
+  branch: main

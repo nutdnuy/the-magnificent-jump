@@ -1,0 +1,11 @@
+format: jb-book
+root: intro
+options:
+  numbered: false
+chapters:
+  - file: magnificent-jump-intro
+    title: ตอนที่ 1 · Intro
+  - file: magnificent-jump-random-clock
+    title: ตอนที่ 2 · นาฬิกาสุ่ม
+  - file: magnificent-jump-variance-gamma
+    title: ตอนที่ 3 · Variance Gamma Process
