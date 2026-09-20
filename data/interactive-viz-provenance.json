@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-20",
+  "route": "no-image-generator",
+  "design_system": "QuantCorner / QuantSeras; existing light book layout with optional dark theme",
+  "reference": "https://engineering.nyu.edu/sites/default/files/2018-09/CarrEuropeanFinReview1998.pdf",
+  "model": "G(t) ~ Gamma(t/nu, scale=nu); X(t)=theta G(t)+sigma W(G(t)); unit-mean clock; nu=0 uses deterministic clock limit",
+  "default_seed": 20260920,
+  "distribution_samples": 24000,
+  "clock_intervals": 120,
+  "time_horizon": 1,
+  "status": "Hypothetical simulations, not market data or option valuations",
+  "preservation": "No original Markdown, source snapshot, existing SVG or executed Notebook changed; browser-only sections appended by builder.",
+  "validation": {
+    "numerical": "12 parameter combinations with 200000 samples each; mean within 6 SE, variance within 3.5%, skewness within 0.15; gamma small shape, Normal limit, monotone clock, histogram mass and seeds checked",
+    "source": "85/85 blocks and formula markup checked in root pages, export and Notebook",
+    "browser": "All three labs mounted; sliders, presets, resampling/reset, largest clock step, keyboard chart scrolling; widths 320 and 520 plus desktop; light/dark inspected; no page overflow at 320; finite SVG paths",
+    "limitations": "Browser controls require JavaScript and HTTP(S); exported site can run from a local HTTP server without network. Histogram bin-center shading approximates tail area; reported probabilities use exact sample thresholds. Gamma sampling uses floating-point arithmetic and discrete observation times."
+  }
+}

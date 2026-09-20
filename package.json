@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build.cjs",
     "build:pages": "npm run build && node scripts/export-pages.cjs",
-    "test": "node qa/source-checks.cjs",
+    "test": "node qa/source-checks.cjs && node qa/vg-math-checks.mjs",
     "dev": "node serve.cjs"
   },
   "engines": {

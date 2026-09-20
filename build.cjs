@@ -30,6 +30,11 @@ async function build(){
   const file=safeFile(item.file);if(seen.has(file))throw Error(`Duplicate page: ${file}`);seen.add(file);
   let source=fs.readFileSync(path.join(root,file+'.md'),'utf8'),meta={};
   const fm=source.match(/^---\n([\s\S]*?)\n---\n/);if(fm){meta=yaml.parse(fm[1]);source=source.slice(fm[0].length);}
+  const labIndex=['magnificent-jump-intro','magnificent-jump-random-clock','magnificent-jump-variance-gamma'].indexOf(file);
+  if(labIndex>=0){
+   source=source.replace('<div class="vg-original">','<p><a href="#interactive-viz">Interactive Viz · ไปทดลองปรับค่าท้ายบท</a></p>\n\n<div class="vg-original">');
+   source+='\n\n<section class="vg-lab" data-vg-lab="'+labIndex+'" aria-label="Interactive Viz เนื้อหาเสริม">\n\n<h2 id="interactive-viz">Interactive Viz · ห้องทดลอง</h2>\n\n<p>ลองปรับพารามิเตอร์เพื่อสำรวจแบบจำลองสมมติ</p><noscript>เปิด JavaScript เพื่อใช้ห้องทดลอง กราฟเดิมและ Notebook ยังอ่านได้ตามปกติ</noscript>\n\n</section>\n';
+  }
   const equations=[];
   source=source.replace(/\$\$([\s\S]+?)\$\$/g,(_,tex)=>{const n=equations.length;equations.push(katex.renderToString(tex.trim(),{displayMode:true,throwOnError:true,output:'htmlAndMathml',strict:'ignore'}));return `<div class="equation math-display" tabindex="0" role="group" aria-label="สมการ" data-math="${n}">EQUATION_${n}_END</div>`;});
   const inlineEquations=[];
@@ -55,7 +60,7 @@ async function build(){
   const nav=pages.map(p=>`<a class="book-link${p.file===page.file?' current':''}" href="${p.href}"${p.file===page.file?' aria-current="page"':''}>${escape(p.title)}</a>`).join('');
   const localNav=page.home?'':`<details class="page-contents" open><summary>ในหน้านี้</summary><nav aria-label="หัวข้อในหน้านี้">${page.headings.map(h=>`<a href="#${escape(h.id)}">${escape(h.title)}</a>`).join('')}</nav></details>`;
   const github=config.repository?.url?`<a href="${escape(config.repository.url)}">GitHub</a>`:'';
-  const html=`<!doctype html><html lang="${escape(config.language||'th')}" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${escape(page.description)}"><title>${escape(page.title)} · ${escape(config.title)}</title><link rel="stylesheet" href="assets/katex/katex.min.css"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="book.css"><link rel="icon" href="data:,"></head><body class="book ${page.home?'welcome-page':'lesson-page'}">
+  const html=`<!doctype html><html lang="${escape(config.language||'th')}" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${escape(page.description)}"><title>${escape(page.title)} · ${escape(config.title)}</title><link rel="stylesheet" href="assets/katex/katex.min.css"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="book.css"><link rel="stylesheet" href="assets/vg-interactive.css"><link rel="icon" href="data:,"></head><body class="book ${page.home?'welcome-page':'lesson-page'}">
 <a class="skip-link" href="#content">ข้ามไปเนื้อหา</a>
 <header class="book-mobile-header"><a href="index.html">${escape(config.title)}</a><button id="menu-button" aria-expanded="false" aria-controls="book-sidebar">สารบัญ</button></header>
 <div class="book-layout"><aside id="book-sidebar" class="book-sidebar"><a href="index.html" class="cover-link" aria-label="กลับหน้า Welcome">${cover('book-cover')}</a><a class="book-name" href="index.html">${escape(config.title)}</a>
@@ -64,14 +69,14 @@ async function build(){
 <div class="book-sidebar-footer"><a href="${escape(page.notebook)}" download>ดาวน์โหลด Notebook</a><a href="${page.file}.md" download>ไฟล์ Markdown หน้านี้</a>${github}<button id="theme-button">พื้นหลังมืด</button></div></aside>
 <main class="book-main ${page.home?'welcome-main':'chapter'}" id="content"><div class="page-topline"><span>${escape(config.title)}</span><button id="print-button">พิมพ์หน้านี้</button></div>${page.home?cover('mobile-cover'):''}${page.home?page.body.replace('<!-- author-profile -->',authorCard(true)):page.body+(page.showAuthorProfile?authorCard():'')}<footer class="book-footer">${escape(config.title)}<span>โดย ${escape(page.author)}</span></footer></main></div>
 <dialog id="search-dialog" aria-labelledby="search-title"><div class="search-dialog-heading"><h2 id="search-title">ค้นหาในสมุดบันทึก</h2><button id="close-search" aria-label="ปิดการค้นหา">ปิด</button></div><label for="search-input" class="sr-only">คำค้นหา</label><input id="search-input" type="search" placeholder="ลองค้นหา volatility หรือ ความผันผวน" autocomplete="off"><p id="search-status" role="status"></p><div id="search-results"></div></dialog>
-<script src="search-index.js" defer></script><script src="site.js" defer></script></body></html>`;
+<script src="search-index.js" defer></script><script src="site.js" defer></script><script type="module" src="assets/vg-interactive.mjs"></script></body></html>`;
   fs.writeFileSync(path.join(root,page.href),html);
   // Keep the familiar book entry URL alongside the directory index.
   if(page.home&&page.file!=='index')fs.writeFileSync(path.join(root,page.file+'.html'),html);
  }
  fs.writeFileSync(path.join(root,'search-index.js'),'window.QFSearchIndex='+JSON.stringify(search).replaceAll('<','\\u003c')+';');
  fs.copyFileSync(path.join(root,'src/site.js'),path.join(root,'site.js'));
- const assets=['site.js','search-index.js','style.css','book.css'];
+ const assets=['assets/vg-interactive.css','assets/vg-interactive.mjs','site.js','search-index.js','style.css','book.css'];
  const htmlFiles=new Set(pages.map(p=>p.href));
  for(const p of pages)if(p.home)htmlFiles.add(p.file+'.html');
  for(const file of htmlFiles){
