@@ -21,3 +21,7 @@ Each chapter includes a separately labelled browser lab, injected by `build.cjs`
 Implementation: `assets/vg-interactive.mjs`, `assets/vg-math.mjs`, `assets/vg-interactive.css`. Native SVG and controls use the existing QuantCorner light/dark design; no chart dependencies or image generator. Simulation seeds are reproducible; New sample advances the seed and Reset restores defaults. The figures and executed Notebook remain available without these browser controls.
 
 `npm test` verifies numerical moments, skewness, gamma sampling, the Normal limit, histogram mass and reproducibility, in addition to original wording preservation. After a build, run the Python source check and verify browser sliders, presets, reset, small-screen chart scrolling and both themes. See `data/interactive-viz-provenance.json`.
+
+## Author card
+
+The landing page and all three chapters display the article author's card, configured in `_config.yml`. Use the user-supplied photo `assets/images/surapas-homchum.png` and Surapas's LinkedIn, not the site owner's profile. The generator retains `author_profile: true`; the original article blocks and Notebook remain unchanged. The portrait is copied without alteration and displayed with the existing circular CSS frame.

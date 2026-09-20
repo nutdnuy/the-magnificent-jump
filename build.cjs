@@ -19,7 +19,7 @@ async function build(){
  ].filter(([,url])=>url):[];
  for(const [,url] of authorLinks)if(new URL(url).protocol!=='https:')throw Error('Author links must use HTTPS');
  const authorCard=(home=false)=>profile?`<section class="author-card${home?' author-card-welcome':''}" aria-labelledby="author-name">
- ${profile.portrait?`<img class="author-portrait" src="${escape(profile.portrait)}" alt="ภาพการ์ตูน ${escape(profile.name)}" width="144" height="144" decoding="async">`:''}
+ ${profile.portrait?`<img class="author-portrait" src="${escape(profile.portrait)}" alt="ภาพผู้เขียน ${escape(profile.name)}" width="144" height="144" decoding="async">`:''}
  <div class="author-copy"><p class="author-label">${escape(profile.label)}</p><h2 id="author-name">${escape(profile.name)}</h2>
  <p>${escape(profile.bio)}</p><p class="author-invitation">${home?'ติดตามงานเขียนและมาเรียนรู้ Quant ไปด้วยกัน':'อ่านบทนี้แล้วอยากเรียนรู้ต่อ? ติดตามผู้เขียนและ QuantCorner ได้ที่นี่'}</p>
  <nav class="author-links" aria-label="ติดตามผู้เขียนและ QuantCorner">${authorLinks.map(([label,url])=>`<a href="${escape(url)}">${escape(label)} <span aria-hidden="true">↗</span></a>`).join('')}</nav></div></section>`:'';

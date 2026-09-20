@@ -8,3 +8,7 @@ The three-part article and its notebook reproduce the owner-supplied [QuantCorne
 ## Shared book assets
 
 The owner-approved QuantCorner and Quantsera logos are copied unchanged from the QuantCorner book. Roboto, Roboto Mono and Noto Sans Thai are bundled locally; their licenses remain in `assets/fonts/`. KaTeX and applicable distribution notices are retained in `vendor/`. The book layout and builder are adapted from the owner's Quantitative Finance Notes project. No lesson text or notebooks from that project are included.
+
+## Author portrait — 2026-09-20
+
+`assets/images/surapas-homchum.png` is the photo supplied by the user for the article author's profile card. The original bytes are preserved; the circular framing is CSS only. No license or additional biographical claims are inferred.

@@ -26,7 +26,11 @@ for directory in [root, root/'_site']:
         actual.extend(canonical(str(block)) for block in blocks)
         indices.extend(int(block['data-source-block']) for block in blocks)
         assert source['author'] in soup.select_one('.book-footer').get_text()
-        assert not soup.select('.author-card'), 'Guest article must not use the owner byline'
+        card = soup.select_one('.author-card')
+        assert card and card.select_one('#author-name').get_text() == 'สุรพัศ หอมชุ่ม'
+        assert card.select_one('.author-portrait')['src'] == 'assets/images/surapas-homchum.png'
+        assert card.select_one('.author-links a')['href'] == 'https://www.linkedin.com/in/surapas-homchum-44632b207/'
+        assert 'Nuthdanai Wangpratham' not in card.get_text()
         assert len(soup.select('.vg-chart img')) == 1
         assert soup.select_one('.book-sidebar-footer a')['href'] == 'notebooks/the-magnificent-jump.ipynb'
     assert indices == list(range(85)), indices

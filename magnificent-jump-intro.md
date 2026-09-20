@@ -3,7 +3,7 @@ title: The Magnificent Jump · ตอนที่ 1
 description: Intro — บทความต้นฉบับโดย สุรพัศ หอมชุ่ม · Math Nerd
 notebook: notebooks/the-magnificent-jump.ipynb
 author: สุรพัศ หอมชุ่ม · Math Nerd
-author_profile: false
+author_profile: true
 ---
 
 <link rel="stylesheet" href="assets/magnificent-jump.css">

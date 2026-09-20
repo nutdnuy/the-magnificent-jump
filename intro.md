@@ -16,3 +16,5 @@ description: บทความต้นฉบับโดย สุรพัศ
 [ดาวน์โหลด Notebook รวมสามตอน](notebooks/the-magnificent-jump.ipynb)
 
 [อ่านต้นฉบับ](https://qc-variance-gamma-model.nutdnuy.chatgpt.site/)
+
+<!-- author-profile -->

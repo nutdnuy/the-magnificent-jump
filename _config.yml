@@ -8,3 +8,12 @@ notebook: notebooks/the-magnificent-jump.ipynb
 repository:
   url: https://github.com/nutdnuy/the-magnificent-jump
   branch: main
+author_profile:
+  name: สุรพัศ หอมชุ่ม
+  label: ผู้เขียน · Math Nerd
+  bio: ผู้เขียน The Magnificent Jump ว่าด้วยแนวคิด Jump Process และ Variance Gamma Model
+  linkedin: https://www.linkedin.com/in/surapas-homchum-44632b207/
+  website: https://www.quant-corner.com/
+  facebook: https://www.facebook.com/quantcornerthailand/
+  discord: https://discord.gg/ab7AvyGu5
+  portrait: assets/images/surapas-homchum.png
