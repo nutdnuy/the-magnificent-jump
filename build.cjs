@@ -76,7 +76,7 @@ async function build(){
  }
  fs.writeFileSync(path.join(root,'search-index.js'),'window.QFSearchIndex='+JSON.stringify(search).replaceAll('<','\\u003c')+';');
  fs.copyFileSync(path.join(root,'src/site.js'),path.join(root,'site.js'));
- const assets=['assets/vg-interactive.css','assets/vg-interactive.mjs','site.js','search-index.js','style.css','book.css'];
+ const assets=['assets/magnificent-jump.css','assets/vg-interactive.css','assets/vg-interactive.mjs','site.js','search-index.js','style.css','book.css'];
  const htmlFiles=new Set(pages.map(p=>p.href));
  for(const p of pages)if(p.home)htmlFiles.add(p.file+'.html');
  for(const file of htmlFiles){
